@@ -4,9 +4,9 @@ import * as StoreController from '../controllers/storeController';
 
 const router = Router();
 
+router.get('/store', StoreController.list);
 router.post('/store', StoreController.newStore);
-router.post('/login', StoreController.login);
-
-router.get('/list', StoreController.list);
+router.delete('/store/:id', StoreController.removeStore);
+router.put('/store/:id', StoreController.updateStore);
 
 export default router;

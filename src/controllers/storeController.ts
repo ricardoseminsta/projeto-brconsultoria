@@ -1,10 +1,6 @@
 import { Request, Response } from 'express';
 import { Store } from '../models/Store';
 
-export const ping = (req: Request, res: Response) => {
-    res.json({pong: true});
-}
-
 export const newStore = async (req: Request, res: Response) => {
     if(req.body.name) {
         let name: string = req.body.name;
@@ -23,24 +19,6 @@ export const newStore = async (req: Request, res: Response) => {
     return res.json({ error: 'Não foi informado um nome, cadastro não realizado' });
 }
 
-export const login = async (req: Request, res: Response) => {
-    if(req.body.email && req.body.password) {
-        let email: string = req.body.email;
-        let password: string = req.body.password;
-
-        let store = await Store.findOne({ 
-            where: { email, password }
-        });
-
-        if(store) {
-            res.json({ status: true });
-            return;
-        }
-    }
-
-    res.json({ status: false });
-}
-
 export const list = async (req: Request, res: Response) => {
     let shops = await Store.findAll();
     let list: number[] = [];
@@ -50,4 +28,25 @@ export const list = async (req: Request, res: Response) => {
     }
 
     res.json({ list });
+}
+
+export const removeStore = async (req: Request, res: Response) => {
+    let id: number = parseInt(req.params.id);
+    await Store.destroy({ where: { id } })
+    res.status(200)
+    return res.json({});
+}
+
+export const updateStore = async (req: Request, res: Response) => {
+    let id: string = req.params.id;
+    let name: string = req.body.name;
+    let store = await Store.findByPk(id);
+    if (store) {
+        store.name = name;
+        await store.save();
+        res.status(200);
+        return res.json({ store })
+    }
+    res.status(404);
+    return res.json({ error: 'Não existe esse id de Loja'})
 }
