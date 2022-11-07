@@ -21,4 +21,8 @@ export const Modality = sequelize.define<ModalityInstance>('Modality', {
     timestamps: false
 });
 
-// Modality.sync({ force: true })
+(async () => {
+    await sequelize.sync({ force: true });
+    const debt = await Modality.create({id: 1, name: "debt"});
+    const credit = await Modality.create({id: 2, name: "credit"});
+  })();
