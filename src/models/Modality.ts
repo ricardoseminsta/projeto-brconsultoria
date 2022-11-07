@@ -21,8 +21,15 @@ export const Modality = sequelize.define<ModalityInstance>('Modality', {
     timestamps: false
 });
 
-(async () => {
-    await sequelize.sync({ force: true });
-    const debt = await Modality.create({id: 1, name: "debt"});
-    const credit = await Modality.create({id: 2, name: "credit"});
+(async () => {   
+    let modalities = await Modality.findAll();
+    if(modalities) {
+        if((modalities[0].id != 1 &&
+            modalities[0].name != 'debt') && (
+            modalities[1].id != 2 && 
+            modalities[1].name != 'credit')) {
+        await sequelize.sync({ force: true });
+        await Modality.create({id: 1, name: "debt"});
+        await Modality.create({id: 2, name: "credit"});}
+    }
   })();

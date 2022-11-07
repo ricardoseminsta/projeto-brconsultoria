@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../instances/pg';
 // import { sequelize } from '../instances/mysql';
-import { Store } from './Store';
+import { Store } from './Store';''
 
 export interface SaleInstance extends Model {
     id: number;
@@ -28,7 +28,7 @@ export const Sale = sequelize.define<SaleInstance>('Sale', {
     }
 }, {
     tableName: 'sale',
-    timestamps: false
+    timestamps: true
 });
 
 Store.hasMany(Sale)

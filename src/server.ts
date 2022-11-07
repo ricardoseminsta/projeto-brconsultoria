@@ -3,7 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import storeRoutes from './routes/storeRoutes';
-import modalityRoutes from './routes/modalityRoutes';
+import saleRoutes from './routes/saleRoutes'
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ server.use(express.urlencoded({ extended: true }));
 server.get('/ping', (req: Request, res: Response) => res.json({ pong: true }));
 
 server.use(storeRoutes);
-server.use(modalityRoutes);
+server.use(saleRoutes);
 
 server.use((req: Request, res: Response) => {
     res.status(404);
