@@ -4,7 +4,8 @@ import * as SaleController from '../controllers/saleController';
 
 const router = Router();
 
-router.get('/sale', SaleController.newSale);
+router.post('/sale', SaleController.newSale);
+router.delete('/sale/:id', SaleController.removeSale);
 
 
 export default router;
