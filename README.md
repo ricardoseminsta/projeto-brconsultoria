@@ -2,6 +2,10 @@
 
 ### Projeto da segunda etapa do processo seletivo para estagiário, candidato Ricardo Emanuel
 
+# Comandos necesários
+- npm install - para instalar os módulos node e bibliotecas necessárias
+- npm run start-dev - para iniciar o projeto no localhost
+
 
 O objetivo do projeto tem como finalidade realizar um CRUD básico de uma base fictícia de transações de vendas.
 
